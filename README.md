@@ -27,7 +27,7 @@
 String keyValue = "从业人员编号:personId,企业标识:companyId,行政区划代码:address,机动车驾驶员姓名:driverName,机动车驾驶员电话:driverPhone,驾驶员性别:driverGender,出生日期:driverBirthday,国籍:driverNationality,驾驶员民族:driverNation,证件编号:credentialsNumber紧急情况联系人:emergencyContact,紧急情况联系人电话:emergencyContactPhone,紧急情况联系人通讯地址:emergencyContactAddress,审核状态:state,创建时间:createTime,更新时间:updateTime";
 
 //调用读取Excel方法（本地方式读取）
-List<Person> list =  ReflectionExcel.readXls(file,ReflectionExcel.getMap(keyValue),"com.gjxx.nrvsp.adl.entity.Person");
+List<Person> list =  ReflectionExcel.readXls(file,ReflectionExcel.getMap(keyValue),Person.class.getName());
 
 //批量插入方法 限制一次只能插入20000条
 //此方法需要自定义
@@ -40,7 +40,7 @@ personService.insertBatch(list,20000);
 String keyValue = "从业人员编号:personId,企业标识:companyId,行政区划代码:address,机动车驾驶员姓名:driverName,机动车驾驶员电话:driverPhone,驾驶员性别:driverGender,出生日期:driverBirthday,国籍:driverNationality,驾驶员民族:driverNation,证件编号:credentialsNumber紧急情况联系人:emergencyContact,紧急情况联系人电话:emergencyContactPhone,紧急情况联系人通讯地址:emergencyContactAddress,审核状态:state,创建时间:createTime,更新时间:updateTime";
 
 //调用读取Excel方法（流方式读取）
-List<Person> list =  ReflectionExcel.readXls(file.getBytes(),ReflectionExcel.getMap(keyValue),"com.gjxx.nrvsp.adl.entity.Person");
+List<Person> list =  ReflectionExcel.readXls(file.getBytes(),ReflectionExcel.getMap(keyValue),Person.class.getName());
 
 //批量插入方法 限制一次只能插入20000条
 //此方法需要自定义
@@ -57,7 +57,7 @@ String keyValue = "从业人员编号:personId,企业标识:companyId,行政区�
 List<Person> personList = personService.selectList(null);
 
 //导出Excel 到本地磁盘
-ReflectionExcel.exportExcel(file, keyValue, personList, "com.gjxx.nrvsp.adl.entity.Person", "从业人员信息");
+ReflectionExcel.exportExcel(file, keyValue, personList, Person.class.getName(), "从业人员信息");
 ```
 - **在浏览器中直接输出Excel：**
 ```java
@@ -70,7 +70,7 @@ ReflectionExcel.exportExcel(file, keyValue, personList, "com.gjxx.nrvsp.adl.enti
 			List<Person> personList = personService.selectList(null);
 			if (personList.size() != 0){
 				//在浏览器中直接输出 exportExcel
-				ReflectionExcel.exportExcelOutputStream(response, keyValue, personList, "com.gjxx.nrvsp.adl.entity.Person", "从业人员信息");
+				ReflectionExcel.exportExcelOutputStream(response, keyValue, personList, Person.class.getName(), "从业人员信息");
 			}else {
 				resultEntity = new ResultEntity(ErrorCodeType.SUCCESS, "导出数据不能为空", "");
 			}
