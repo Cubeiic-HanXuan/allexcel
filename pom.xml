@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <reflectasm.version>1.0.0</reflectasm.version>
         <!-- Common libs -->
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
     </properties>
 
     <dependencies>
